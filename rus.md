@@ -1,16 +1,12 @@
-#BEMIT: Taking the BEM Naming Convention a Step Further
-5 August, 2015
-Anybody who’s followed me or my work for any length of time will no doubt
-know that I’m a huge proponent of[the BEM naming convention][1]. What I’m
-about to talk about in this post is not an alternative or different naming 
-convention to BEM, but an augmentation: small additions that level BEM up a 
-notch. This extended BEM syntax has been dubbed*BEMIT*, as it borrows some
-paradigms and patterns from the (as yet unpublished
-) [Inverted Triangle CSS architecture][2]. BEM + ITCSS = BEMIT.
+#BEMIT: Расширяем BEM CSS нотацию на шаг вперёд
+5 августа 2015
 
-For a quick recap on BEM, it works by breaking all classes in a codebase down
-into one of three groups:
+Любой, кто читает меня или наблюдает за моей работой даже небольшое время знает, что я горячо рекомендую [BEM CSS нотацию][1].
+То, о чем я хотел бы рассказать в этом посте, не является альтернативой или вариантом другого синтаксиса БЭМ, а его развитием: 
+это небольшие дополнения, который поднимают БЭМ **notch**.
+Я назвал это расширение синтаксиса *BEMIT*, т.к. оно берет идеи и некоторые паттерны из (так и не опубликованной)[Inverted Triangle CSS architecture]. BEM + ITCSS = BEMIT.
 
+Напомню БЭМ разбеляет все классы на 3 группы:
 *   **Block:** The sole root of the component.
 *   **Element:** A component part of the Block.
 *   **Modifier:** A variant or extension of the Block.
