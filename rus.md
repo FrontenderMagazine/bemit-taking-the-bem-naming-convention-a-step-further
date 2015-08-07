@@ -6,20 +6,17 @@
 это небольшие дополнения, который поднимают БЭМ **notch**.
 Я назвал это расширение синтаксиса *BEMIT*, т.к. оно берет идеи и некоторые паттерны из (так и не опубликованной)[Inverted Triangle CSS architecture]. BEM + ITCSS = BEMIT.
 
-Напомню БЭМ разбеляет все классы на 3 группы:
-*   **Block:** The sole root of the component.
-*   **Element:** A component part of the Block.
-*   **Modifier:** A variant or extension of the Block.
+Напомню БЭМ разделяет все классы на 3 группы:
+*   **Блок:** — корень блока-компонента
+*   **Элемент:** — часть блока
+*   **Модификатор:** — вариация или расширение блока
 
-Blocks, Elements, and Modifiers: BEM. Absolutely every class in a project fits
-into one of these categories, which is why BEM is so great—it’s incredibly 
-simple and straightforward.
+Блок, Элемент, Модификатор: БЭМ. Абсолютно любой класс в проекте вписывается в одну из этих категорий, 
+поэтому БЭМ так прекрасен своей простотой и понятностью.
 
-The point of BEM is to give a lot more transparency and clarity in your markup
-. BEM tells developers how classes relate to each other, which is particularly 
-useful in complex or deep pieces of DOM. For example, if I were to ask you to 
-delete all of the user-related classes in the following chunk of HTML, which 
-ones would you get rid of?
+Суть БЭМ в том чтобы сделать ваш код прозрачней и понятней. БЭМ показыват разработчикам как классы относятся один к одному,
+что особенно полезно в сложных или глубоких частях DOM. Например, если бы я попросил вас удалить все классы относящиеся к юзеру в этом куске кода,
+какие бы вы выбросили?
 
     <div class="media  user  premium">
       <img src="" alt="" class="img  photo  avatar" />
