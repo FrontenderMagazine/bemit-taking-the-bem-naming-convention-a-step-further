@@ -24,8 +24,8 @@
     </div>
     
 
-Well we’d definitely start with `user`, but anything beyond that would have to
-be a guess, educated or otherwise. However, if we rewrote it with BEM:
+Наверное вы бы начали с `user`, но обо всем остальное вы должны были бы догадываться, изучать или пытаться разобраться как-то ещё.
+Однако, если мы перепишем это с помощью BEM:
 
     <div class="media  user  user--premium">
       <img src="" alt="" class="media__img  user__photo  avatar" />
@@ -33,14 +33,15 @@ be a guess, educated or otherwise. However, if we rewrote it with BEM:
     </div>
     
 
-Here we can instantly see that `user`, `user--premium`, `user__photo`, and 
-`user__bio` are all related to each other. We can also see that `media`, 
-`media__img`, and `media__body` are related, and that `avatar` is just a lone
-Block on its own with no Elements or Modifiers.
+Тут мы можем сразу увидеть что `user`, `user--premium`, `user__photo` и 
+`user__bio` взаимосвязанны. Также мы можем увидеть что `media`, 
+`media__img` и `media__body` связанны, и что `avatar` это просто одинокий Блок без своих собственных Элементов или Модификаторов.
 
-This level of detail from our classes alone is great! It allows us to make much
-safer and more informed decisions about what things do and how we can use, reuse,
-change, or remove them.
+
+Круто что мы можем узнать все это только лишь из имен наших классов!
+Это позволяет нам принимать более правильные и обдуманные решения про то как работает наш код и как мы можем это использовать, изменять и удалять.
+
+
 
 The one thing missing from BEM is that it only tells use what classes to in
 relative terms, as in, how classes are related to*each other*. They don’t
