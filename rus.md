@@ -69,44 +69,34 @@
       <p class="o-media__body  c-user__bio">...</p>
     </div>
     
+Теперь, я могу видеть что у нас есть повторноиспользуемая абстракция (из OOCSS) [Медиа-объект][5] (`o-media*`)
+и две реализации конкретных компонентов (`c-user*` and `c-avatar`).
+Эти классы по прежнему являются Блоками, Элементами или Модификаторами: мы не добавили к ним новых классов, но мы добавили дополнительный логический уровень.
 
-From this, I can see that we have a reusable abstraction in
-[the Media Object][5] (`o-media*`) and two implementation-specific components
-(`c-user*` and `c-avatar`). These classes are all still Blocks, Elements, or
-Modifiers: they haven’t added a new classification, but have added another layer
-of rich meaning.
+Эти пространства имен связанны со слоями что мы можем найти в Inverted Triangle CSS
+архитектуре. Я имею в виду что у каждого класс а теперь есть свое местожительство в вашем проекте (и вашей файловой системе).
 
-These namespaces tie in with the layers found in the Inverted Triangle CSS
-architecture, meaning every class has a specific place to live in our project (
-and on our filesystem
-).
+## Responsive-суффиксы
 
-## Responsive Suffixes {#responsive-suffixes}
-
-The next thing BEMIT adds to traditional BEM naming is responsive suffixes.
-These suffixes take the format`@<breakpoint>`, and tell us this class
-when at this size:
+Следующая вещь, которую BEMIT добавляет в традиционную БЭМ-нотацию, это отзывчивые суффиксы.
+Эти суффиксы имею формат `@<breakpoint>` и описывают связь этого класса с медиа-состоянием.
 
     <div class="o-media@md  c-user  c-user--premium">
       <img src="" alt="" class="o-media__img@md  c-user__photo  c-avatar" />
       <p class="o-media__body@md  c-user__bio">...</p>
     </div>
     
+Например тут у нас есть `o-media@md`, что означает что это медиа-объект для набора правил медиа-состояния `md`.
+Вот ещё возможные варианты:
 
-So here we have `o-media@md`, which means be the media object at this
-breakpoint. Other possible examples:
+*   `u-hidden@print` – вспомогательный класс для скрытия блоков в состоянии для печати.
+*   `u-1/4@lg` – вспомогательный класс чтоб уменьшить что-то в 4 раза для медиа-состояния 'большая остановка`.
+*   `o-layout@md` – объект раскладки для медиа-состояния 'средняя остановка`.
 
-*   `u-hidden@print` – a utility class to hide things when in print context.
-*   `u-1/4@lg` – a utility to make something a quarter width in the large
-    breakpoint.
-   
-*   `o-layout@md` – a layout object in the medium breakpoint.
+Символ `@` легко читается и имеет логическое значение для обозначения условных состояний.
+Это позволит разработчикам просто взглянув на него, понять какие потенциальные перестановки или изменения могут быть у этого кусочка интерфейса.
 
-The `@` is a human readable and logical way of denoting conditional states. It
-allows developers to learn about any potential permutations or appearances that
-the piece of UI in question might have, just at a glance.
-
-**N.B.**: You have to escape the `@` symbol in your CSS file, like so:
+**N.B.**: Вам необходимо экранировать символ `@` в вашем CSS-файле:
 
     @media print {
     
@@ -117,17 +107,16 @@ the piece of UI in question might have, just at a glance.
     }
     
 
-## Healthchecks {#healthchecks}
+## Проверка жизнеспособности кода
 
-By having these strict and consistent patterns in our HTML we can do a number
-of things. Firstly, and most obviously, we can write much more expressive and
-rich UI code for our colleagues, meaning they can learn and reason about the
-state and shape of a project much more quickly. They can also contribute in the
-same consistent manner.
+Внедрив эти строгие и последовательные паттерны в свой HTML мы можем делать множество вещей.
+В первую очередь, и самое главное, мы сможем писать гораздо более выразительный и качественный код интерфейсов для наших коллег,
+подразумевая что им будет гораздо легче изучить состояние и сделать выводы о частях нового проекта.
+И они тоже смогут снести свой вклад таким же образом.
 
-But another happy side effect we get is that we can run a visual healthcheck
-against our UI. By using substring selectors, we can target and then visualise
-the general makeup of a page based on the types of class it contains:
+Но другой приятный побочный эффект заключается в том, что мы получаем возможность визуально оценить жизнеспособность нашего кода.
+Используя substring-селекторы, мы может выделить и отрисовать основную раскладку страницы, полагаясь на типы классов из которых она состоит:
+
 
     /**
      * Outline all classes.
@@ -181,15 +170,11 @@ the general makeup of a page based on the types of class it contains:
     }
     
 
-Of course this isn’t bulletproof—something might be both a Component and an
-Element and a Responsive class—but if we write the classes in pretty selective
-order (i.e. in the order of least to most important to know about, hence Hacks
-coming last), we can begin to get a nice visual snapshot of the makeup of any
-given page. You can read more about the benefits of this highlighting in
-[my previous article about namespaces][6].
+Конечно, это не пуленепробиваемое решение — что-то может быть одновременно и Компонентом и Элементом и Отзывчивым классом, но
+если мы пишем классы стараясь соблюдать порядок (т.е. в порядке от наименнее до наиболее важное, от наиболее важных вещей, так что хаки записываются последними), мы можем получить красивый визуальный снимок верстки любой страницы.
+Вы можете прочитать больше о преимуществах этого выделения в [моей предыдущей статье про пространства имен][6].
 
-We can enable this healthcheck in multiple ways, but the simplest would
-probably be nesting the whole lot in[a Scope class][7]:
+Мы можем отобразить это проверку различными способами, но пожалй наиболее простым будет добавить следующее в [Глобальный класс][7]:
 
     .s-healthcheck {
     
@@ -207,17 +192,16 @@ probably be nesting the whole lot in[a Scope class][7]:
     }
     
 
-…which you can then add to your `html` element when you want to turn it on:
+…и вы вы можете добавить их к вашему `html`-элементу когда вы захотите включить это:
 
     <html class="s-healthcheck">
     
 
-## Final Word {#final-word}
+## Напоследок
 
-So there we have it, a couple of simple additions to BEM to turn it into BEMIT
-: adding information onto the beginning and end of the standard Block, Element,
-or Modifier classes to give us more knowledge about how the classes behave in a
-non-relative sense. Some more examples:
+Итак, у нас есть несколько простых добавлений для БЭМ, чтоб превратить его в BEMIT: добавление информации в начало и конец стандартных классов
+Блока, Элемента и Модификатора, дает нам дополнительные знания о том, как эти классы ведут себя вне контекста связей между ними.
+Ещё немного примеров:
 
     .c-page-head {}
     
